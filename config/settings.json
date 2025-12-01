@@ -1,0 +1,19 @@
+{
+  "version": "2.0",
+  "monitor_interval": 8,
+  "enable_process_monitor": true,
+  "enable_network_monitor": true,
+  "enable_file_monitor": true,
+  "enable_root_checks": true,
+  "enable_behavior_engine": true,
+  "enable_anomaly_detection": true,
+  "alert_thresholds": {
+    "process": 3,
+    "network": 4,
+    "file": 3,
+    "root": 1,
+    "behavior": 5
+  },
+  "report_formats": ["json", "txt"],
+  "log_level": "INFO"
+}

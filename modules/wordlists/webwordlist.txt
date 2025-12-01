@@ -1,0 +1,9 @@
+admin
+login
+dashboard
+backup
+uploads
+wp-admin
+wp-login.php
+config
+.env

@@ -1,0 +1,24 @@
+{
+  "blocked_ips": [
+    "188.166.0.1",
+    "91.121.0.55",
+    "45.9.148.120"
+  ],
+  "suspicious_ports": [
+    4444,
+    5555,
+    1337,
+    8081
+  ],
+  "forbidden_protocols": [
+    "TOR",
+    "I2P",
+    "SOCKS_TUNNEL"
+  ],
+  "blacklisted_domains": [
+    "ratserver.net",
+    "keylogger.io",
+    "steal-data.su",
+    "silentminer.cc"
+  ]
+}

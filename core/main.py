@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+"""
+core/main.py
+Primary CLI entrypoint for Android-EDR core.
+Provides:
+  - detect (single run)
+  - monitor (continuous)
+  - once (alias for detect)
+  - run-for (run monitor for N seconds)
+  - analyze (static APK analysis)
+"""
+import argparse
+import sys
+import time
+from pathlib import Path
+
+# ensure repo root is on sys.path when installed
+HERE = Path(__file__).resolve().parents[1]
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))
+
+from core.monitor import Monitor
+from core.scheduler import Scheduler
+
+# detection modules (used by monitor/detect)
+from modules import anomaly_detector, apk_analyzer, correlator
+
+VERSION = "1.4.2"
+
+def cli():
+    parser = argparse.ArgumentParser(prog="android-edr", description="Android-EDR (Termux) - core launcher")
+    sub = parser.add_subparsers(dest="cmd")
+
+    p_detect = sub.add_parser("detect", help="Run single detection pass")
+    p_detect.add_argument("--verbose", action="store_true")
+
+    p_monitor = sub.add_parser("monitor", help="Start continuous monitoring")
+    p_monitor.add_argument("--interval", type=int, default=8)
+    p_monitor.add_argument("--verbose", action="store_true")
+
+    p_once = sub.add_parser("once", help="Run one cycle then exit (alias for detect)")
+
+    p_schedule = sub.add_parser("run-for", help="Run monitor for N seconds then exit")
+    p_schedule.add_argument("seconds", type=int)
+
+    p_analyze = sub.add_parser("analyze", help="Run static APK analysis")
+    p_analyze.add_argument("apk", nargs="?")
+    p_analyze.add_argument("--verbose", action="store_true")
+
+    parser.add_argument("--version", action="store_true")
+    args = parser.parse_args()
+
+    if args.version:
+        print(VERSION)
+        sys.exit(0)
+
+    if args.cmd == "detect" or args.cmd == "once":
+        Monitor.run_once(verbose=getattr(args, "verbose", False))
+    elif args.cmd == "monitor":
+        Monitor.start_loop(interval=args.interval, verbose=args.verbose)
+    elif args.cmd == "run-for":
+        Monitor.run_for(seconds=args.seconds, interval=8)
+    elif args.cmd == "analyze":
+        if not args.apk:
+            print("[!] analyze requires an APK path")
+            sys.exit(1)
+        # Call apk analyzer module
+        apk_analyzer.run_once(args.apk, verbose=args.verbose)
+    else:
+        parser.print_help()
+
+if __name__ == "__main__":
+    cli()

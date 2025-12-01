@@ -1,0 +1,23 @@
+{
+  "average_process_count": 92,
+  "average_open_files": 1300,
+  "average_network_connections": 12,
+  "high_risk_processes": [
+    "dex2oat",
+    "zygote",
+    "system_server"
+  ],
+  "normal_app_permissions": [
+    "INTERNET",
+    "READ_EXTERNAL_STORAGE",
+    "WRITE_EXTERNAL_STORAGE"
+  ],
+  "allowed_system_calls": [
+    "open",
+    "read",
+    "write",
+    "connect",
+    "stat",
+    "fork"
+  ]
+}

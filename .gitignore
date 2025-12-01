@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+
+# Logs, reports, generated files
+logs/
+reports/
+*.log
+
+# System
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+*.pem
+*.key
+*.crt
+.env*
+

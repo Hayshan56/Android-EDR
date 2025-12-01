@@ -1,0 +1,20 @@
+{
+  "su_paths": [
+    "/system/bin/su",
+    "/system/xbin/su",
+    "/sbin/su",
+    "/su/bin/su",
+    "/magisk/.core/bin/su",
+    "/system/app/Superuser.apk"
+  ],
+  "magisk_files": [
+    "/data/adb/magisk",
+    "/data/adb/modules",
+    "/data/adb/magisk.img"
+  ],
+  "dangerous_props": [
+    "ro.debuggable=1",
+    "ro.secure=0",
+    "ro.build.type=userdebug"
+  ]
+}

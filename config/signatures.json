@@ -1,0 +1,28 @@
+{
+  "malicious_hashes": [
+    "d41d8cd98f00b204e9800998ecf8427e",
+    "44d88612fea8a8f36de82e1278abb02f"
+  ],
+  "dangerous_permissions": [
+    "android.permission.READ_SMS",
+    "android.permission.RECEIVE_SMS",
+    "android.permission.RECORD_AUDIO",
+    "android.permission.SYSTEM_ALERT_WINDOW",
+    "android.permission.WRITE_SETTINGS"
+  ],
+  "suspicious_strings": [
+    "keylogger",
+    "remote_control",
+    "backdoor",
+    "su_exec",
+    "dump_cipher_keys",
+    "frida",
+    "ptrace_hook"
+  ],
+  "tracker_libraries": [
+    "com.facebook.analytics",
+    "com.google.android.gms.measurement",
+    "com.adjust.sdk",
+    "com.appsflyer"
+  ]
+}

@@ -1,0 +1,5 @@
+/data/local/tmp
+/sdcard/Download
+/system/xbin
+/system/bin
+/su
