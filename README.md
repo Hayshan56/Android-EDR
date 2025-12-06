@@ -1,7 +1,7 @@
 
 # Android-EDR 🛡️
 
-[![Android-EDR]](https://github.com/Hayshan56/Android-EDR)
+[![Android-EDR](https://github.com/Hayshan56/Android-EDR)
 [![Termux Compatible](https://img.shields.io/badge/Termux-Compatible-green?style=for-the-badge&logo=termux&logoColor=white)](https://termux.com/)
 [![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![License MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
