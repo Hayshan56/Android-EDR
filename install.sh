@@ -16,7 +16,7 @@ fi
 # Essentials for Termux
 $PKG_INSTALL python git curl nano openssh clang
 
-# pip (Termux python includes pip usually)
+# pip (Termux python usually includes pip)
 if ! command -v pip >/dev/null 2>&1; then
     echo "[*] Installing pip..."
     $PKG_INSTALL python-pip || true
@@ -30,22 +30,25 @@ else
     echo "[!] requirements.txt not found, skipping pip install."
 fi
 
-# Create reports/logs directories
+# EXTRA packages for Dashboard server
+echo "[*] Installing dashboard dependencies..."
+pip install --no-cache-dir flask flask_cors
+
+# Create reports/logs/config directories
 mkdir -p reports logs config
 
 # Install launcher to PREFIX/bin
-PREFIX=${PREFIX:-/data/data/com.termux/files/usr}
-BIN_DIR="$PREFIX/bin"
-mkdir -p "$BIN_DIR"
+PREFIX=\${PREFIX:-/data/data/com.termux/files/usr}
+BIN_DIR="\$PREFIX/bin"
+mkdir -p "\$BIN_DIR"
 
-# If you want the launcher to be core/main.py or a root script:
-# prefer if core/main.py exists
+# If core/main.py exists, install the android-edr launcher
 if [ -f core/main.py ]; then
-    cp core/main.py "$BIN_DIR/android-edr"
-    chmod +x "$BIN_DIR/android-edr"
-    echo "[*] Launcher installed to $BIN_DIR/android-edr"
+    cp core/main.py "\$BIN_DIR/android-edr"
+    chmod +x "\$BIN_DIR/android-edr"
+    echo "[*] Launcher installed to \$BIN_DIR/android-edr"
 else
     echo "[!] core/main.py not found. You can run: python3 core/main.py"
 fi
 
-echo "[*] Install complete. Run: android-edr --help  OR python3 core/main.py --help"
+echo "[*] Install complete. Run: android-edr --help"

@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Android-EDR Dashboard</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0d0d0d;
+    color: white;
+}
+
+.header {
+    padding: 20px;
+    font-size: 26px;
+    background: #111;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.section-title {
+    background: #181818;
+    padding: 14px;
+    margin-top: 14px;
+    font-size: 20px;
+    border-left: 4px solid #00c8ff;
+    cursor: pointer;
+}
+
+.finding-box {
+    margin: 10px;
+    padding: 14px;
+    background: #141414;
+    border-radius: 8px;
+    border-left: 4px solid #00aaff;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn {
+    margin-top: 10px;
+    padding: 8px 14px;
+    background: #00aaff;
+    border: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="header">Android-EDR Dashboard</div>
+
+<div id="status"></div>
+
+<div class="section-title" onclick="toggleSection('findings')">Findings</div>
+<div id="findings" class=""></div>
+
+<div class="section-title" onclick="toggleSection('events')">Events</div>
+<div id="events" class="hidden"></div>
+
+<script>
+
+function toggleSection(id) {
+    const sec = document.getElementById(id);
+    sec.classList.toggle("hidden");
+}
+
+async function loadReport() {
+    const res = await fetch("/api/latest");
+    const data = await res.json();
+
+    if (data.error === "no_reports") {
+        document.getElementById("status").innerHTML =
+            "<div class='finding-box'>Run a detection first.</div>";
+        return;
+    }
+
+    document.getElementById("status").innerHTML =
+        "<div class='finding-box'>Last Updated: " + new Date().toLocaleString() + "</div>";
+
+    // Findings
+    const fbox = document.getElementById("findings");
+    fbox.innerHTML = "";
+    data.findings.forEach(f => {
+        fbox.innerHTML += `
+            <div class="finding-box">
+                <b>Type:</b> ${f.type}<br>
+                <b>Path:</b> ${f.path}<br>
+                <b>Match:</b> ${f.match}
+            </div>
+        `;
+    });
+
+    // Events
+    const ebox = document.getElementById("events");
+    ebox.innerHTML = "";
+    data.events.forEach(ev => {
+        ebox.innerHTML += `
+            <div class="finding-box">
+                <b>Event:</b> ${ev.type}<br>
+                <b>Path:</b> ${ev.data.path}<br>
+                <b>Timestamp:</b> ${ev.ts}
+            </div>
+        `;
+    });
+}
+
+loadReport();
+setInterval(loadReport, 4000);
+</script>
+
+</body>
+</html>
