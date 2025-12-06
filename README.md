@@ -297,10 +297,8 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 
 ---
 
-<div align="center">
+
 Made with ❤️ by HAYSHAN    
 
 Security shouldn't be complicated. It should be accessible.
 
-</div>
-```
