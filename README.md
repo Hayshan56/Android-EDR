@@ -1,7 +1,7 @@
 
 # Android-EDR 🛡️
 
-[![1764986245905.png](https://i.postimg.cc/GmxHdhzJ/1764986245905.png)](https://postimg.cc/nXMH1xyC)
+[![IMG-20251206-095925.png](https://i.postimg.cc/c4QJBLq6/IMG-20251206-095925.png)](https://postimg.cc/6ypw9wpN)
 
 [![Termux Compatible](https://img.shields.io/badge/Termux-Compatible-green?style=for-the-badge&logo=termux&logoColor=white)](https://termux.com/)
 [![Python 3.12+](https://img.shields.io/badge/Python-3.12%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
